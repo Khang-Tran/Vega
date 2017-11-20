@@ -11,9 +11,10 @@ using Vega.Persistent;
 namespace Vega.Migrations
 {
     [DbContext(typeof(VegaDbContext))]
-    partial class VegaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171120154850_AddFeature")]
+    partial class AddFeature
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,75 +65,11 @@ namespace Vega.Migrations
                     b.ToTable("ModelSet");
                 });
 
-            modelBuilder.Entity("Vega.Models.Vehicle", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ContactName")
-                        .IsRequired()
-                        .HasMaxLength(255);
-
-                    b.Property<string>("ContactPhone")
-                        .IsRequired()
-                        .HasMaxLength(255);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(255);
-
-                    b.Property<bool>("IsRegister");
-
-                    b.Property<DateTime>("LastUpdate");
-
-                    b.Property<int>("ModelId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ModelId");
-
-                    b.ToTable("VehicleSet");
-                });
-
-            modelBuilder.Entity("Vega.Models.VehicleFeature", b =>
-                {
-                    b.Property<int>("FeatureId");
-
-                    b.Property<int>("VehicleId");
-
-                    b.HasKey("FeatureId", "VehicleId");
-
-                    b.HasIndex("VehicleId");
-
-                    b.ToTable("VehicleFeatureSet");
-                });
-
             modelBuilder.Entity("Vega.Models.Model", b =>
                 {
                     b.HasOne("Vega.Models.Make", "Make")
                         .WithMany("Models")
                         .HasForeignKey("MakeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Vega.Models.Vehicle", b =>
-                {
-                    b.HasOne("Vega.Models.Model", "Model")
-                        .WithMany()
-                        .HasForeignKey("ModelId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Vega.Models.VehicleFeature", b =>
-                {
-                    b.HasOne("Vega.Models.Feature", "Feature")
-                        .WithMany()
-                        .HasForeignKey("FeatureId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Vega.Models.Vehicle", "Vehicle")
-                        .WithMany("Features")
-                        .HasForeignKey("VehicleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
