@@ -19,7 +19,7 @@ namespace Vega.Controllers
         public MakesController(VegaDbContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper;
+            _mapper= mapper;
         }
         [HttpGet("/api/makes")]
         public async Task<IEnumerable<MakeResource>> GetMakes()
