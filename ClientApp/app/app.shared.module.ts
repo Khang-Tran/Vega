@@ -12,11 +12,11 @@ import { CounterComponent } from './components/counter/counter.component';
 import { VehicleFormComponent } from "./components/vehicle-form/vehicle-form.component";
 import { VehicleService } from "./services/vehicle.service";
 import { ToastyModule } from 'ng2-toasty';
-import { AppErrorHandler } from "./app.error-handler";
-import * as Raven from 'raven-js';
+//import { AppErrorHandler } from "./app.error-handler";
+//import * as Raven from 'raven-js';
 
 
-Raven.config("https://c9a339fe0024411e867f916bb9b17689@sentry.io/249257").install();
+//Raven.config("https://c9a339fe0024411e867f916bb9b17689@sentry.io/249257").install();
 @
     NgModule({
         declarations: [
@@ -45,7 +45,7 @@ Raven.config("https://c9a339fe0024411e867f916bb9b17689@sentry.io/249257").instal
         ],
         providers: [
             VehicleService,
-            { provide: ErrorHandler, useClass: AppErrorHandler }
+            //{ provide: ErrorHandler, useClass: AppErrorHandler }
         ]
     })
 export class AppModuleShared {

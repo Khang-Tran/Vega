@@ -5,7 +5,7 @@ const merge = require('webpack-merge');
 const treeShakableModules = [
     '@angular/animations',
     '@angular/common',
-    '@angular/compiler',
+    '@angular/compiler', 'underscore',
     '@angular/core',
     '@angular/forms',
     '@angular/http',

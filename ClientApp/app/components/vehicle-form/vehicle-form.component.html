@@ -6,7 +6,7 @@
 <form #f="ngForm" (ngSubmit)="submit()">
     <div class="form-group">
         <label for="make">Make</label>
-        <select #make="ngModel" required="" id="make" class="form-control" (change)="onMakeChange()" [(ngModel)]="vehicle.makeId" name="makeId">
+        <select #make="ngModel" required id="make" class="form-control" (change)="onMakeChange()" [(ngModel)]="vehicle.makeId" name="makeId">
             <option value=""></option>
             <option *ngFor="let m of makes" value="{{m.id}}">{{m.name}}</option>
         </select>
@@ -32,19 +32,19 @@
     <p>Is this vehicle register?</p>
     <div class="radio">
         <label for="register">
-            <input name="isRegister" type="radio" id="register" value="true" [(ngModel)]="vehicle.isRegistered"/> Yes
+            <input name="isRegister" type="radio" id="register" [value]="true" [(ngModel)]="vehicle.isRegister"/> Yes
         </label>
     </div>
     
     <div class="radio">
         <label for="notRegister">
-            <input name="isRegister" type="radio" id="notRegister" value="false" [(ngModel)]="vehicle.isRegistered"/> No
+            <input name="isRegister" type="radio" id="notRegister" [value]="false" [(ngModel)]="vehicle.isRegister"/> No
         </label>
     </div>
     <h2>Feature</h2>
     <div *ngFor="let f of features" class="checkbox">
         <label for="feature{{f.id}}">
-            <input [(ngModel)]="vehicle.features" (change)="onFeatureToggle(f.id, $event)" type="checkbox" id="feature{{f.id}}"/> {{f.name}}
+            <input [checked]="vehicle.features.includes(f.id)" (change)="onFeatureToggle(f.id, $event)" type="checkbox" id="feature{{f.id}}"/> {{f.name}}
         </label>
     </div>
     
@@ -73,4 +73,6 @@
     </div>
     
     <button class="btn btn-primary">Save</button>
+    <button *ngIf="vehicle.id" (click)="delete()" type="button" class="btn btn-danger">Delete</button>
+
 </form>
