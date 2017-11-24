@@ -4,8 +4,8 @@ import { ToastyService } from "ng2-toasty";
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/Observable/forkJoin';
-import {ISaveVehicle} from "../../models/saveVehicle";
-import {IVehicle} from "../../models/vehicle";
+import { ISaveVehicle } from "../../models/saveVehicle";
+import { IVehicle } from "../../models/vehicle";
 import * as _ from 'underscore';
 @Component({
     selector: 'app-vehicle-form',
@@ -32,7 +32,9 @@ export class VehicleFormComponent implements OnInit {
         private toastyService: ToastyService,
         private router: Router,
         private route: ActivatedRoute) {
-        route.params.subscribe(p => this.vehicle.id = +p['id']);
+        route.params.subscribe(p => {
+            this.vehicle.id = +p['id'] || 0;
+        });
     }
 
     ngOnInit() {
@@ -73,7 +75,7 @@ export class VehicleFormComponent implements OnInit {
     onMakeChange() {
 
 
-       this.populateModels();
+        this.populateModels();
         delete this.vehicle.modelId;
     }
 
@@ -93,7 +95,7 @@ export class VehicleFormComponent implements OnInit {
     }
     delete() {
         if (confirm("Are you sure?")) {
-            this.vehicleService.delete(this.vehicle.id).subscribe(x=> { this.router.navigate(['/home'])});
+            this.vehicleService.delete(this.vehicle.id).subscribe(x => { this.router.navigate(['/home']) });
         }
     }
     submit() {
@@ -111,11 +113,19 @@ export class VehicleFormComponent implements OnInit {
                 });
         } else {
             this.vehicleService.create(this.vehicle)
-                .subscribe(
-                    x => console.log(x));
+                .subscribe(x =>
+                    this.toastyService.success({
+                        title: 'Success',
+                        msg: 'Created successfully',
+                        theme: 'bootstrap',
+                        showClose: true,
+                        timeout: 5000
+                    })
+                );
+
         }
 
-       
+
     }
 
 }

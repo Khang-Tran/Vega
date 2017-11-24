@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Vega.Models;
 
 namespace Vega.Persistent.Repositories
@@ -8,5 +9,6 @@ namespace Vega.Persistent.Repositories
         Task<Vehicle> GetVehicle(int id, bool isIncludeRelative= true);
         void Add(Vehicle vehicle);
         void Remove(Vehicle vehicle);
+        Task<QueryResult<Vehicle>> GetVehicles(VehicleQuery vehicleQuery);
     }
 }

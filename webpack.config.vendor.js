@@ -13,7 +13,8 @@ const treeShakableModules = [
     '@angular/platform-browser-dynamic',
     '@angular/router',
     'ng2-toasty',
-    'ng2-toasty/bundles/style-bootstrap.css',  
+    'font-awesome/css/font-awesome.css',
+    'ng2-toasty/bundles/style-bootstrap.css',
     'raven-js',
     'zone.js',
 ];
@@ -32,7 +33,7 @@ module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
     const sharedConfig = {
         stats: { modules: false },
-        resolve: { extensions: [ '.js' ] },
+        resolve: { extensions: ['.js'] },
         module: {
             rules: [
                 { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, use: 'url-loader?limit=100000' }
@@ -83,7 +84,7 @@ module.exports = (env) => {
             libraryTarget: 'commonjs2',
         },
         module: {
-            rules: [ { test: /\.css(\?|$)/, use: ['to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize' ] } ]
+            rules: [{ test: /\.css(\?|$)/, use: ['to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize'] }]
         },
         plugins: [
             new webpack.DllPlugin({

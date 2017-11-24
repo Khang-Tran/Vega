@@ -83,6 +83,13 @@ namespace Vega.Controllers
             return Ok(vehicleResource);
         }
 
+        public async Task<QueryResultResource<VehicleResource>> GetVehicles(VehicleQueryResource vehicleQueryResource)
+        {
+            var filter = _mapper.Map<VehicleQueryResource, VehicleQuery>(vehicleQueryResource);
+            var queryResult = await _vehicleRepository.GetVehicles(filter);
+            
+            return _mapper.Map<QueryResult<Vehicle>, QueryResultResource<VehicleResource>>(queryResult);
+        }
 
 
     }

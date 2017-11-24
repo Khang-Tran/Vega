@@ -12,6 +12,7 @@ namespace Vega.Mapping
     {
         public MappingProfile()
         {
+            CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));  
             // Domain to API Resource
             CreateMap<Make, MakeResource>();
             CreateMap<Make, KeyValuePairResource>();
@@ -45,6 +46,9 @@ namespace Vega.Mapping
                   foreach (var f in addedFeatures)
                       v.Features.Add(f);
               });
+
+
+            CreateMap<VehicleQueryResource, VehicleQuery>();
         }
     }
 }

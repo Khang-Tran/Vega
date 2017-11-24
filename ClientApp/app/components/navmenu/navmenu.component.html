@@ -12,18 +12,22 @@
         <div class='clearfix'></div>
         <div class='navbar-collapse collapse'>
             <ul class='nav navbar-nav'>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/home']">
+                
+                <li [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{exact: true}">
+                    <a [routerLink]="['/vehicles']">
                         <span class='glyphicon glyphicon-home'></span> Home
                     </a>
                 </li>
-              
+
+
+      
+
                 <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/vehicles/new']">
                         <span class='glyphicon glyphicon-plus'></span> Home
                     </a>
                 </li>
-                
+
 
                 <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/counter']">

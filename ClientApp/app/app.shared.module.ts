@@ -12,11 +12,11 @@ import { CounterComponent } from './components/counter/counter.component';
 import { VehicleFormComponent } from "./components/vehicle-form/vehicle-form.component";
 import { VehicleService } from "./services/vehicle.service";
 import { ToastyModule } from 'ng2-toasty';
-//import { AppErrorHandler } from "./app.error-handler";
-//import * as Raven from 'raven-js';
-
-
-//Raven.config("https://c9a339fe0024411e867f916bb9b17689@sentry.io/249257").install();
+import { AppErrorHandler } from "./app.error-handler";
+import * as Raven from 'raven-js';
+import {VehicleListComponent} from "./components/vehicle-list/vehicle-list.component";
+import {PaginationComponent} from "./components/pagination/pagination.component";
+Raven.config("https://c9a339fe0024411e867f916bb9b17689@sentry.io/249257").install();
 @
     NgModule({
         declarations: [
@@ -25,7 +25,9 @@ import { ToastyModule } from 'ng2-toasty';
             CounterComponent,
             FetchDataComponent,
             HomeComponent,
-            VehicleFormComponent
+            VehicleFormComponent,
+            VehicleListComponent,
+            PaginationComponent
         ],
         imports: [
             CommonModule,
@@ -33,10 +35,10 @@ import { ToastyModule } from 'ng2-toasty';
             HttpModule,
             FormsModule,
             RouterModule.forRoot([
-                { path: '', redirectTo: 'home', pathMatch: 'full' },
+                { path: '', redirectTo: 'vehicles', pathMatch: 'full' },
                 { path: 'vehicles/new', component: VehicleFormComponent },
                 { path: 'vehicles/:id', component: VehicleFormComponent },
-
+                { path: 'vehicles', component: VehicleListComponent },
                 { path: 'home', component: HomeComponent },
                 { path: 'counter', component: CounterComponent },
                 { path: 'fetch-data', component: FetchDataComponent },
@@ -45,7 +47,7 @@ import { ToastyModule } from 'ng2-toasty';
         ],
         providers: [
             VehicleService,
-            //{ provide: ErrorHandler, useClass: AppErrorHandler }
+            { provide: ErrorHandler, useClass: AppErrorHandler }
         ]
     })
 export class AppModuleShared {
