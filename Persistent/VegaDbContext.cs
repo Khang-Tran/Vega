@@ -15,6 +15,7 @@ namespace Vega.Persistent
         public DbSet<Vehicle> VehicleSet { get; set; }
         public DbSet<VehicleFeature> VehicleFeatureSet{ get; set; }
 
+        public DbSet<Photo> PhotoSet { get; set; }
         // By using this, we will decouple from context
         // Instead of create a new instance of context in every controller
         // We pass the context into the controller constructor

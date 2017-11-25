@@ -11,9 +11,10 @@ using Vega.Persistent;
 namespace Vega.Migrations
 {
     [DbContext(typeof(VegaDbContext))]
-    partial class VegaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171124210609_AddPhoto")]
+    partial class AddPhoto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,13 +74,13 @@ namespace Vega.Migrations
                         .IsRequired()
                         .HasMaxLength(255);
 
-                    b.Property<int>("VehicleId");
+                    b.Property<int?>("VehicleId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("PhotoSet");
+                    b.ToTable("Photo");
                 });
 
             modelBuilder.Entity("Vega.Models.Vehicle", b =>
@@ -137,8 +138,7 @@ namespace Vega.Migrations
                 {
                     b.HasOne("Vega.Models.Vehicle")
                         .WithMany("Photos")
-                        .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("VehicleId");
                 });
 
             modelBuilder.Entity("Vega.Models.Vehicle", b =>

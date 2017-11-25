@@ -4,11 +4,12 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class VehicleService {
-
+    res: any;
     constructor(private http: Http) { }
 
     getMakes() {
         return this.http.get('/api/makes').map(res => res.json());
+       
     }
     getFeatures() {
         return this.http.get("/api/features")

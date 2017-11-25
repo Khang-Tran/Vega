@@ -20,19 +20,21 @@ export class VehicleListComponent implements OnInit {
         { title: 'Model', key: 'model', isSortable: true },
         {}
     ];
-    constructor(private vehicleService: VehicleService) { }
+    constructor(private vehicleService: VehicleService) {
+
+    }
     populateVehicle() {
         this.vehicleService.getVehicles(this.filter)
             .subscribe(result => {
                 this.queryResult = result;
+                console.log(this.queryResult.items);
             });
 
     }
     ngOnInit() {
         this.vehicleService.getMakes().subscribe(makes => this.makes = makes);
-
-
         this.populateVehicle();
+
     }
 
  

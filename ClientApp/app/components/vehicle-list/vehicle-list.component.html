@@ -41,7 +41,10 @@
         <th>{{vehicle.make.name}}</th>
         <th>{{vehicle.model.name}}</th>
         <th>{{vehicle.contact.name}}</th>
-        <th><a href="#">View</a></th>
+        <th>
+            <a [routerLink]="['/vehicles/', vehicle.id]">View
+            </a>
+        </th>
     </tr>
     </tbody>
     <tr>
